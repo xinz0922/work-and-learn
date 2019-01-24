@@ -7,6 +7,7 @@
 统计提取出的序列和提取不出来的序列加起来数目对不对
 
 
-blastp鉴定耐药基因，
+blastp鉴定耐药基因
+nohup ls 1fasta_file.pro/ | while read i ; do name=$(basename $i .faa) ; ls 1fasta_file.pro/$i | while read j ; do strain=$(basename $j _protein.faa) ; blastp -query /share/disk5/zhengx/identify_ARGs_1-14/1fasta_file.pro/${i}/${j} -db /share/disk5/zhengx/CARD_seq/new-symbol_CARD_protein_new.fasta -out 2blast_out.e-20/${name}.blout/$strain_pro.blout  -evalue 1e-20 -outfmt 0  -num_threads 20  ;done;done &
 
 
