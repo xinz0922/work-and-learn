@@ -13,7 +13,5 @@ nohup ls 1fasta_file.pro/ | while read i ; do name=$(basename $i .faa) ; ls 1fas
 #【鉴定耐药基因的参数，分为两步来卡，一步是在blastp，注意blastp的版本要是2.2.28的，因为Eblastx版本为4.1， 是根据2.2.28来做的，在blastp这一步只卡evalue，为1e-20，这里的参数是按照NCBI的耐药细菌数据库来卡的】
 #【另外的参数identity为90%，qcoverage为80%，tcoverage为80%，这些都是在EblastX这一步卡的】
 
-Eblastx
-
-
-
+Eblastx   #【以Acinetobacter_baumannii为例，参数identity为90%，qcoverage为80%，tcoverage为80%】
+ls 2blast_out.e-20/Acinetobacter_baumannii.blout/ | while read i ; do perl /share/disk5/zhengx/software/EblastX_4.1.pl -i 2blast_out.e-20/Acinetobacter_baumannii.blout/$i -o 3Ebl_out/Acinetobacter_baumannii_Eblax/${i}.ebl -id 90 -qp 0.8 -tp 0.8 -b 1 -p 20   ;done
