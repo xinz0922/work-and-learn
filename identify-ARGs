@@ -12,7 +12,7 @@ nohup cat 3-7_bsi_all_species.txt | while read i ;do ls /p200/husn_group/zhuqh/b
 解压：             gunzip *
 
 blastp鉴定耐药基因
-nohup ls 1fasta_file.pro/ | while read i ; do name=$(basename $i .faa) ; ls 1fasta_file.pro/$i | while read j ; do strain=$(basename $j _protein.faa) ; /p200/husn_group/zhengxin/software/ncbi-blast-2.2.28+/bin/blastp -query /share/disk5/zhengx/identify_ARGs_1-14/1fasta_file.pro/${i}/${j} -db /share/disk5/zhengx/CARD_seq/new-symbol_CARD_protein_new.fasta -out 2blast_out.e-20/${name}.blout/${strain}_pro.blout  -evalue 1e-20 -outfmt 0  -num_threads 20  ;done;done >>blast.log 2>&1  &  
+nohup ls ./import-temp_class1_species_1fasta_file.pro | while read i ; do name=$(basename $i .faa) ; ls import-temp_class1_species_1fasta_file.pro/$i | while read j ; do strain=$(basename $j _protein.faa) ; /p200/husn_group/zhengxin/software/ncbi-blast-2.2.28+/bin/blastp -query /p200/husn_group/zhengxin/identify_ARGs_1-14/import-temp_class1_species_1fasta_file.pro/${i}/${j} -db /p200/husn_group/zhengxin/CARD_seq/new-symbol_CARD_protein_new.fasta -out 2blast_out.e-20/${name}.blout/${strain}_pro.blout  -evalue 1e-20 -outfmt 0  -num_threads 8  ;done;done >>class1.blast.log 2>&1  &  
 #【鉴定耐药基因的参数，分为两步来卡，一步是在blastp，注意blastp的版本要是2.2.28的，因为Eblastx版本为4.1， 是根据2.2.28来做的，在blastp这一步只卡evalue，为1e-20，这里的参数是按照NCBI的耐药细菌数据库来卡的】
 #【另外的参数identity为90%，qcoverage为80%，tcoverage为80%，这些都是在EblastX这一步卡的】
 
