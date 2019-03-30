@@ -1,4 +1,7 @@
-新下载的NCBI细菌数据库更新到服务器上/share/disk5/zhuqh/bacteria_ncbi_1_10_2019/database，大小为563G，包含95种菌，各level的strain数目统计结果在/share/disk5/zhengx/identify_ARGs_1-14/0base_file/122species_count.txt
+# blast鉴定耐药基因三步曲
+
+
+1. 新下载的NCBI细菌数据库更新到服务器上/share/disk5/zhuqh/bacteria_ncbi_1_10_2019/database，大小为563G，包含95种菌，各level的strain数目统计结果在/share/disk5/zhengx/identify_ARGs_1-14/0base_file/122species_count.txt
 
 在这里先做那8种菌的耐药基因鉴定，八种菌名在/share/disk5/zhengx/identify_ARGs_1-14/0base_file/8species.name里
 首先将NCBI database里面的protein 序列提取出来，然后解压，放在/share/disk5/zhengx/identify_ARGs_1-14/1fasta_file.pro，在1fasta_file.pro下每种菌一个文件夹，数据结构为:1fasta_file.pro/species.faa/level_GCA_species.faa。
