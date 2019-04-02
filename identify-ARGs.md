@@ -19,8 +19,11 @@
 - 统计提取出的序列和提取不出来的序列加起来数目对不对：
 
    - 统计已经提取出来的level 为chromosome的strain有多少
+
 `cat ../0base_file/8species.name | while read i ; do a=`ls ./$i.faa | grep -c  "chro"` ; echo $i   $a >>1chro_count;done`
+
    - 统计报错信息中的没有成功提取的序列的数目，加起来看和总数对不对得上
+
 `cut -d "/" -f 7 nopro_chro_file | sort | uniq -c | awk '{print $2 "\t" $1}' >2no-chro_count`
 
 - **当提取第二部分序列（除了重要的八种菌之外的其他87种菌，有一个重大问题是统计文件数目，有没有全部cp完成）**
