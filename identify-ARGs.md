@@ -13,7 +13,7 @@
 在1fasta_file.pro下每种菌一个文件夹，数据结构为:**1fasta_file.pro/species.faa/level_GCA_species.faa。**
 提取序列：               
 
-`nohup cat /share/disk5/zhengx/identify_ARGs_1-14/0base_file/8species.name  | while read i ; do ls /share/disk5/zhuqh/bacteria_ncbi_1_10_2019/database/${i}/Complete/| while read j ; do cp /share/disk5/zhuqh/bacteria_ncbi_1_10_2019/database/${i}/Complete/${j}/*_protein.faa.gz ./${i}.faa/comp_${j}_protein.faa.gz  >>./nopro_fa.txt  2>&1`
+   `nohup cat /share/disk5/zhengx/identify_ARGs_1-14/0base_file/8species.name  | while read i ; do ls /share/disk5/zhuqh/bacteria_ncbi_1_10_2019/database/${i}/Complete/| while read j ; do cp /share/disk5/zhuqh/bacteria_ncbi_1_10_2019/database/${i}/Complete/${j}/*_protein.faa.gz ./${i}.faa/comp_${j}_protein.faa.gz  >>./nopro_fa.txt  2>&1`
 
 (在这里，追加重定向到文件./nopro_fa.txt ，是为了将错误输出定向到文件中，因为database里有的stain没有相应的protein文件，因此将错误输出到文件中，方便统计有哪些strain没有protein文件） ; done;done &
 
@@ -21,16 +21,16 @@
 
    - 统计已经提取出来的level 为chromosome的strain有多少
 
-   `cat ../0base_file/8species.name | while read i ; do a=`ls ./$i.faa | grep -c  "chro"` ; echo $i   $a >>1chro_count;done`
+      `cat ../0base_file/8species.name | while read i ; do a=`ls ./$i.faa | grep -c  "chro"` ; echo $i   $a >>1chro_count;done`
 
    - 统计报错信息中的没有成功提取的序列的数目，加起来看和总数对不对得上
 
-   `cut -d "/" -f 7 nopro_chro_file | sort | uniq -c | awk '{print $2 "\t" $1}' >2no-chro_count`
+      `cut -d "/" -f 7 nopro_chro_file | sort | uniq -c | awk '{print $2 "\t" $1}' >2no-chro_count`
 
 - **当提取第二部分序列（除了重要的八种菌之外的其他87种菌，有一个重大问题是统计文件数目，有没有全部cp完成）**
 （wd：/p200/husn_group/zhengxin/identify_ARGs_1-14/count）
 
-`nohup cat 3-7_bsi_all_species.txt | while read i ;do ls /p200/husn_group/zhuqh/bacteria_ncbi_1_10_2019/database/${i} |while read j ;do ls /p200/husn_group/zhuqh/bacteria_ncbi_1_10_2019/database/${i}/${j} | while read z ;do a=`ls /p200/husn_group/zhuqh/bacteria_ncbi_1_10_2019/database/${i}/${j}/${z} | grep -c "protein.faa.gz"` ;if [ $a -gt 0 ] ;then echo $z >>2all_strain_has_pro_id ;else echo $z >>2all_strain_nohas_pro_id ;fi ; 2>err.log; done ;done  ;done &`
+   `nohup cat 3-7_bsi_all_species.txt | while read i ;do ls /p200/husn_group/zhuqh/bacteria_ncbi_1_10_2019/database/${i} |while read j ;do ls /p200/husn_group/zhuqh/bacteria_ncbi_1_10_2019/database/${i}/${j} | while read z ;do a=`ls /p200/husn_group/zhuqh/bacteria_ncbi_1_10_2019/database/${i}/${j}/${z} | grep -c "protein.faa.gz"` ;if [ $a -gt 0 ] ;then echo $z >>2all_strain_has_pro_id ;else echo $z >>2all_strain_nohas_pro_id ;fi ; 2>err.log; done ;done  ;done &`
 
    - 解压:`gunzip *`
 
