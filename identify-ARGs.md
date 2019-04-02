@@ -28,7 +28,7 @@
 
 `nohup cat 3-7_bsi_all_species.txt | while read i ;do ls /p200/husn_group/zhuqh/bacteria_ncbi_1_10_2019/database/${i} |while read j ;do ls /p200/husn_group/zhuqh/bacteria_ncbi_1_10_2019/database/${i}/${j} | while read z ;do a=`ls /p200/husn_group/zhuqh/bacteria_ncbi_1_10_2019/database/${i}/${j}/${z} | grep -c "protein.faa.gz"` ;if [ $a -gt 0 ] ;then echo $z >>2all_strain_has_pro_id ;else echo $z >>2all_strain_nohas_pro_id ;fi ; 2>err.log; done ;done  ;done &`
 
-   - 解压:`gunzip *`
+      - 解压:`gunzip *`
 
 ## blastp鉴定耐药基因
 
