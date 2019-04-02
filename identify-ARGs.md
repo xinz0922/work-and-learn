@@ -12,6 +12,7 @@
 */share/disk5/zhengx/identify_ARGs_1-14/1fasta_file.pro*，
 在1fasta_file.pro下每种菌一个文件夹，数据结构为:**1fasta_file.pro/species.faa/level_GCA_species.faa。**
 提取序列：               
+
 `nohup cat /share/disk5/zhengx/identify_ARGs_1-14/0base_file/8species.name  | while read i ; do ls /share/disk5/zhuqh/bacteria_ncbi_1_10_2019/database/${i}/Complete/| while read j ; do cp /share/disk5/zhuqh/bacteria_ncbi_1_10_2019/database/${i}/Complete/${j}/*_protein.faa.gz ./${i}.faa/comp_${j}_protein.faa.gz  >>./nopro_fa.txt  2>&1`
 
 (在这里，追加重定向到文件./nopro_fa.txt ，是为了将错误输出定向到文件中，因为database里有的stain没有相应的protein文件，因此将错误输出到文件中，方便统计有哪些strain没有protein文件） ; done;done &
@@ -44,4 +45,5 @@
 ## Eblastx   
 
 #【以Acinetobacter_baumannii为例，参数identity为90%，qcoverage为80%，tcoverage为80%】
+
 `ls 2blast_out.e-20/Acinetobacter_baumannii.blout/ | while read i ; do perl /share/disk5/zhengx/software/EblastX_4.1.pl -i 2blast_out.e-20/Acinetobacter_baumannii.blout/$i -o 3Ebl_out/Acinetobacter_baumannii_Eblax/${i}.ebl -id 90 -qp 0.8 -tp 0.8 -b 1 -p 20  >>ebl_AB_out.log 2>&1 ;done`
